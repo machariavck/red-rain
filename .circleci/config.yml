@@ -8,14 +8,14 @@ workflows:
     jobs:
       - docker/publish:
           after_build:
-            - run:
-              name: Build Report
-              command: echo 'build was successful..'
+              - run:
+                  name: Build Report
+                  command: echo 'build was successful..'
           before_build:
-            - run:
-              name: Begin Build
-              command: echo 'build process about to start'
-          image: $D_USER/red-rain
-          docker-username: D_USER
-          docker-password: D_PASS
+              - run:
+                  name: Begin Build
+                  command: echo 'build process about to start'
+          image: $DOCKER_USERNAME/red-rain
+          docker-username: DOCKER_USERNAME
+          docker-password: DOCKER_PASSWORD
           tag: latest
