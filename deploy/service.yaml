@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: red-rain
+  name: red-rain-svc
+  namespace: default
+  # selfLink: /api/v1/namespaces/default/services/red-rain-svc
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: red-rain
+
+status:
+  loadBalancer: {}

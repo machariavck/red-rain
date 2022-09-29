@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: red-rain
+  labels:
+    app: red-rain
+spec:
+  selector:
+    matchLabels:
+      app: red-rain
+  template:
+    metadata:
+      labels:
+        app: red-rain
+    spec:
+      containers:
+      - name: simple-express
+        image: machariavck/simple-express
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

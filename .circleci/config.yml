@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@2.1.4
+
+workflows:
+  publish-image:
+    jobs:
+      - docker/publish:
+          after_build:
+            - name: Build Report
+            - run: echo 'build was successful..'
+          before_build:
+            - name: Begin Build
+            - run: echo 'build process about to start'
+          image: $D_USER/red-rain
+          docker-username: D_USER
+          docker-password: D_PASS
+          tag: latest
